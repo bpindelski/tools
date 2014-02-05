@@ -26,9 +26,6 @@ class ConnectionThread implements Runnable {
 		}
 	}
 
-}
-
-public class ConnectionTest {
 	public static void main(String[] args) {
 		String host = args[0];
 		int port = Integer.parseInt(args[1]);
@@ -36,11 +33,11 @@ public class ConnectionTest {
 		String pass = args[3];
 
 		for (int i=0; i<10000; ++i) {
-			ConnectionThread t = new ConnectionThread(host, port, user, pass);
-			t.run();
+			new Thread(new ConnectionThread(host, port, user, pass)).start();
 			if (i%1000 == 0) {
 				System.out.println(i);
 			}
-		}		 
+		}
 	}
+
 }
